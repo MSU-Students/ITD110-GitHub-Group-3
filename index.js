@@ -6,7 +6,7 @@ var db = level('./leveldb');
 // Issue #3 
 
 var status = ['Applying'];
-acceptStudent(' 201811827 ', ' Norhani A. Ayaon ',' 21 ', ' Marawi City ');
+acceptStudent(' 201811827 ', ' Norhani A. Ayaon ',' 22 ', ' Marawi City ');
 function acceptStudent(id, fullName, age, address){
     console.log("   ------ Student Information ------  ");
     db.put(id, [id, fullName , age , address], function(err){
