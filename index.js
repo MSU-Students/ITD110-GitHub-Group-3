@@ -37,4 +37,24 @@ async function scheduleExam(id, scheduleDate){
         console.log(' Status: ',  status[2])
         console.log(' Exam date on ' + examDate);
     })
+    rateEntranceExam(id, status);
 }
+
+async function rateEntranceExam(id, status){
+    var examScore = Math.random() * (120 - 40) + 40;
+    examScore = examScore.toFixed();
+    await db.get(id, function(err, value){
+        if(examScore >= 70){
+            console.log('\n')
+            console.log(value)
+            console.log(' Exam score: ' + examScore);
+            console.log(' Status: ', status[3]);
+        } else{
+            console.log('\n')
+            console.log(value)
+            console.log(' Exam score: ' + examScore);
+            console.log(' Status: ', status[4]);
+        }
+    })
+}
+
