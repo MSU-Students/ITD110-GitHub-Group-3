@@ -1,11 +1,10 @@
 var level = require('level');
 
 var db = level('./leveldb');
-
+var status = ['Applying', 'Under Interview', 'Exam Pending', 'Admitted', 'Probationary'];
 
 // Issue #3 
 
-var status = ['Applying', 'Under Interview'];
 acceptStudent(' 201811827 ', ' Norhani A. Ayaon ',' 21 ', ' Marawi City ');
 function acceptStudent(id, fullName, age, address){
     console.log("   ------ Student Information ------  ");
@@ -26,5 +25,16 @@ async function scheduleInterview(id, scheduleDate){
         console.log(' Interview date:  ' + scheduleDate);
         console.log(' Status: ' + status[1])
     })
+    scheduleExam(id, scheduleDate);
 }
 //OUTPUT = ['201811827', 'Norhani A. Ayaon', 22, 'Marawi City']
+
+async function scheduleExam(id, scheduleDate){
+    await db.get(id, function(err, value){
+        var examDate = 'March 1, 2021';
+        console.log('\n')
+        console.log(value);
+        console.log(' Status: ',  status[2])
+        console.log(' Exam date on ' + examDate);
+    })
+}
