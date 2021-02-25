@@ -13,7 +13,7 @@ function acceptStudent(id, fullName, age, address){
         
     })
     db.get(id, function(err, value){
-        console.log(value, status[0]); 
+        console.log(value,'Student: ', status[0]); 
     })
 
 }
