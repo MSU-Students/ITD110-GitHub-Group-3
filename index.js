@@ -16,13 +16,8 @@ async function acceptStudent(id, fullName, age, address){
         Name: fullName, 
         Age: age, 
         Address: address,
+        Status : status[0]
     };
     await db.put(id, student);
-    db.get(id, function(err, value){
-        if(err){
-            console.log(err);
-        } else{
-            console.log(value, 'Status: ', status[0]);
-        }
-    })
+    console.log(value, 'Status: ', student.Status);
 }
