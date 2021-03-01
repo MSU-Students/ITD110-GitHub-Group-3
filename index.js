@@ -16,8 +16,19 @@ async function acceptStudent(id, fullName, age, address){
         Name: fullName, 
         Age: age, 
         Address: address,
-        Status : status[0]
+        Status : 'Applying'
     };
+    await db.put(id, student);
+    console.log(student);
+    
+    var ScheduleDate = 'Februaryd 1, 2021';
+    scheduleInterview(id, ScheduleDate);
+}
+
+async function scheduleInterview(id, scheduleDate){
+    const student = await db.get(id);
+    student.Status = 'Under Interview';
+    student.ScheduleDate= scheduleDate;
     await db.put(id, student);
     console.log(student);
 }
