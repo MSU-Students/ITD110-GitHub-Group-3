@@ -21,14 +21,23 @@ async function acceptStudent(id, fullName, age, address){
     await db.put(id, student);
     console.log(student);
     
-    var ScheduleDate = 'Februaryd 1, 2021';
-    scheduleInterview(id, ScheduleDate);
+    var InterviewDate = 'February 1, 2021';
+    scheduleInterview(id, InterviewDate);
 }
 
 async function scheduleInterview(id, scheduleDate){
     const student = await db.get(id);
     student.Status = 'Under Interview';
-    student.ScheduleDate= scheduleDate;
+    student.InterviewDate= scheduleDate;
+    await db.put(id, student);
+    console.log(student);
+    scheduleExam(id, scheduleDate)
+}
+async function scheduleExam(id, scheduleDate){
+    const student = await db.get(id);
+    scheduleDate = 'February 11, 2021';
+    student.Status = 'Pending Exam';
+    student.ExamSchedule= scheduleDate;
     await db.put(id, student);
     console.log(student);
 }
