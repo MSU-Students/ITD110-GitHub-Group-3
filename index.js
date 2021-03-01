@@ -19,5 +19,5 @@ async function acceptStudent(id, fullName, age, address){
         Status : status[0]
     };
     await db.put(id, student);
-    console.log(value, 'Status: ', student.Status);
+    console.log('Status: ', student.Status);
 }
