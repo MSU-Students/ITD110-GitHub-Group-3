@@ -1,6 +1,6 @@
 const level = require('level');
 const db = connectToDatabase('./leveldb');
 
-function connectToDatabase(db){
-    return level(db, { valueEncoding: 'json' });
+function connectToDatabase(dbName){
+    return level(dbName, { valueEncoding: 'json' });
 }
