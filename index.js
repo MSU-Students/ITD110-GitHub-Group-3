@@ -21,8 +21,6 @@ async function acceptStudent(id, fullName, age, address){
     await db.put(id, student);
     console.log(student);
     
-    var ScheduleDate = 'Februaryd 1, 2021';
-    scheduleInterview(id, ScheduleDate);
 }
 
 async function scheduleInterview(id, scheduleDate){
