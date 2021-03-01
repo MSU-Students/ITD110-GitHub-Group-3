@@ -5,7 +5,7 @@ var status = ['Applying', 'Under Interview', 'Exam Pending', 'Admitted', 'Probat
 (async function() {
     await acceptStudent('201811827', 'Norhani A. Ayaon', 22, 'Marawi City');
     var ScheduleDate = 'Februaryd 1, 2021';
-    await scheduleInterview(id, ScheduleDate);
+    await scheduleInterview('201811827', ScheduleDate);
 }());
 
 function connectToDatabase(dbName){
