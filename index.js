@@ -1,14 +1,18 @@
 const level = require('level');
 const db = connectToDatabase('./leveldb');
-var status = ['Applying', 'Under Interview', 'Exam Pending', 'Admitted', 'Probationary'];
 
 (async function main() {
     await acceptStudent('201811827', 'Norhani A. Ayaon', 22, 'Marawi City');
-    await scheduleExam('201811827', scheduleDate);
-    
+
+    await scheduleInterview('201811827', 'February 1, 2021');
+
+    await scheduleExam('201811827', 'February 11, 2021');
+
     var ExamScore = Math.random() * (120);
     ExamScore = ExamScore.toFixed();
     await rateEntranceExam('201811827', ExamScore);
+
+    await deleteStudent('201811827');
     
 }());
 
@@ -26,9 +30,6 @@ async function acceptStudent(id, fullName, age, address){
     };
     await db.put(id, student);
     console.log(student);
-    
-    var InterviewDate = 'February 1, 2021';
-    scheduleInterview(id, InterviewDate);
 }
 
 async function scheduleInterview(id, scheduleDate){
@@ -40,7 +41,6 @@ async function scheduleInterview(id, scheduleDate){
 }
 async function scheduleExam(id, scheduleDate){
     const student = await db.get(id);
-    scheduleDate = 'February 11, 2021';
     student.Status = 'Pending Exam';
     student.ExamSchedule= scheduleDate;
     await db.put(id, student);
@@ -57,4 +57,15 @@ async function rateEntranceExam(id, examScore){
     }
     await db.put(id, student);
     console.log(student);
+}
+
+async function deleteStudent(id){
+    await db.del(id)
+    db.get(id, function(err, value){
+        if(err){
+            console.log('\nData is deleted');
+        } else{
+            console.log(value); 
+        }
+    })
 }
