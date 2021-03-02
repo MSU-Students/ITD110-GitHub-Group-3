@@ -2,8 +2,14 @@ const level = require('level');
 const db = connectToDatabase('./leveldb');
 var status = ['Applying', 'Under Interview', 'Exam Pending', 'Admitted', 'Probationary'];
 
-(async function() {
+(async function main() {
     await acceptStudent('201811827', 'Norhani A. Ayaon', 22, 'Marawi City');
+    await scheduleExam('201811827', scheduleDate);
+    
+    var ExamScore = Math.random() * (120);
+    ExamScore = ExamScore.toFixed();
+    await rateEntranceExam('201811827', ExamScore);
+    
 }());
 
 function connectToDatabase(dbName){
@@ -31,7 +37,6 @@ async function scheduleInterview(id, scheduleDate){
     student.InterviewDate= scheduleDate;
     await db.put(id, student);
     console.log(student);
-    scheduleExam(id, scheduleDate)
 }
 async function scheduleExam(id, scheduleDate){
     const student = await db.get(id);
@@ -39,11 +44,7 @@ async function scheduleExam(id, scheduleDate){
     student.Status = 'Pending Exam';
     student.ExamSchedule= scheduleDate;
     await db.put(id, student);
-    console.log(student);
-
-    var ExamScore = Math.random() * (120);
-    ExamScore = ExamScore.toFixed();
-    rateEntranceExam(id, ExamScore);
+    console.log(student);   
 }
 
 async function rateEntranceExam(id, examScore){
