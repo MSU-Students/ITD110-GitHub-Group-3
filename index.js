@@ -40,4 +40,21 @@ async function scheduleExam(id, scheduleDate){
     student.ExamSchedule= scheduleDate;
     await db.put(id, student);
     console.log(student);
+
+    var ExamScore = Math.random() * (120);
+    ExamScore = ExamScore.toFixed();
+    rateEntranceExam(id, ExamScore);
 }
+
+async function rateEntranceExam(id, examScore){
+    const student = await db.get(id);
+    student.ExamScore = examScore;
+    if (examScore >= 75){
+        student.Status = 'Admitted';
+    } else {
+        student.Status = 'Probitionary';
+    }
+    await db.put(id, student);
+    console.log(student);
+}
+
