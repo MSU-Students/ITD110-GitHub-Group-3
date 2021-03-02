@@ -4,6 +4,7 @@ const db = connectToDatabase('./leveldb');
 (async function main() {
     await acceptStudent('201811827', 'Norhani A. Ayaon', 22, 'Marawi City');
 
+
     await scheduleInterview('201811827', 'February 1, 2021');
 
     await scheduleExam('201811827', 'February 11, 2021');
