@@ -4,8 +4,11 @@ var status = ['Applying', 'Under Interview', 'Exam Pending', 'Admitted', 'Probat
 
 (async function main() {
     await acceptStudent('201811827', 'Norhani A. Ayaon', 22, 'Marawi City');
-    await scheduleExam('201811827', scheduleDate);
-    
+
+    var InterviewDate = 'February 1, 2021';
+    await scheduleInterview('201811827', InterviewDate);
+    await scheduleExam('201811827', 'February 5, 2021')
+  
     var ExamScore = Math.random() * (120);
     ExamScore = ExamScore.toFixed();
     await rateEntranceExam('201811827', ExamScore);
@@ -25,10 +28,7 @@ async function acceptStudent(id, fullName, age, address){
         Status : 'Applying'
     };
     await db.put(id, student);
-    console.log(student);
-    
-    var InterviewDate = 'February 1, 2021';
-    scheduleInterview(id, InterviewDate);
+    console.log(student);    
 }
 
 async function scheduleInterview(id, scheduleDate){
