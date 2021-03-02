@@ -57,4 +57,3 @@ async function rateEntranceExam(id, examScore){
     await db.put(id, student);
     console.log(student);
 }
-
